@@ -1,0 +1,25 @@
+name: build kernel
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-kernel:
+    name: Build Kernel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kernel source
+        uses: actions/checkout@v6
+
+      - name: Build
+        uses: dabao1955/kernel_build_action@main
+        with:
+          kernel-url: .
+          config: clover_defconfig
+          arch: arm64
+          aosp-clang: true
+          anykernel3: true
