@@ -10,5 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
-      - run: curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s builtin
+    - uses: actions/checkout@v6
+    - run: curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s builtin
+
+    - name: Commit and push
+      run: |
+        git config user.name "actions"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Setup SukiSU-Ultra builtin"
+        git push
