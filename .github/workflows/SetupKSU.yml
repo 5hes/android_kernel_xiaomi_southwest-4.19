@@ -1,4 +1,4 @@
-name: Setup SukiSU-Ultra builtin
+name: Setup SukiSU-Ultra builtin and SUSFS
 
 on:
   push:
@@ -12,17 +12,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
-    - run: |
+    - name: Setup KSU and SUSFS
+      run: |
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s builtin
         git clone --depth 1 -b kernel-4.19 https://gitlab.com/simonpunk/susfs4ksu.git
 
-    - name: Apply SUSFS pathes
+    - name: rename subdir .git to .git.bak
       run: |
-        cp susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch KernelSU/
-        cp susfs4ksu/kernel_patches/50_add_susfs_in_kernel-4.19.patch .
-        cp susfs4ksu/kernel_patches/fs/* fs/
-        cp susfs4ksu/kernel_patches/include/linux/* include/linux/
-        cd KernelSU
-        patch -p1 < 10_enable_susfs_for_ksu.patch
-        cd ..
-        patch -p1 < 50_add_susfs_in_kernel.patch
+        mv KernelSU/.git KernelSU/.git.bak
+        mv susfs4ksu/.git susfs4ksu/.git.bak
+
+    - name: Integrate KSU and SUSFS to repo
+      run: |
+        git config user.name "actions"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Setup SukiSU-Ultra builtin and SUSFS"
+        git push
