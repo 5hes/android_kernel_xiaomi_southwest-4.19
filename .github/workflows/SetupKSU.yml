@@ -1,6 +1,7 @@
 name: Setup SukiSU-Ultra builtin
 
 on:
+  push:
   workflow_dispatch:
 
 permissions: write-all
