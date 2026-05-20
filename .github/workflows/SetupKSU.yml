@@ -1,0 +1,14 @@
+name: Setup SukiSU-Ultra builtin
+
+on:
+  workflow_dispatch:
+
+permissions: write-all
+
+jobs:
+  Setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - run: curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s builtin
