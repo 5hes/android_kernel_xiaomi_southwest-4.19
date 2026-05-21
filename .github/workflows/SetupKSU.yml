@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@v6
     - name: Setup KSU and SUSFS
       run: |
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash --cleanup
+        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s --cleanup
         rm -rf susfs4ksu
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s builtin
         git clone -b kernel-4.19 --depth 1 https://gitlab.com/simonpunk/susfs4ksu.git
