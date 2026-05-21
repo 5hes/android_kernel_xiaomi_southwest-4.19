@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install -y gcc-aarch64-linux-gnu build-essential bc git flex bison libssl-dev libncurses5-dev libelf-dev
-          wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/tags/android-12.0.0_r0.27/clang-r383902.tar.gz
+          wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android10-mainline-release/clang-r383902.tar.gz
           mkdir ~/.aosp-clang
           tar -xzf clang-r383902.tar.gz -C ~/.aosp-clang
 
