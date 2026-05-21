@@ -37,7 +37,7 @@ jobs:
           make -j$(nproc) \
           O=out \
           CLANG_TRIPLE=aarch64-linux-gnu- \
-          KBUILD_CFLAGS="-Wno-error"
+          KCFLAGS="-Wno-error"
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v7
